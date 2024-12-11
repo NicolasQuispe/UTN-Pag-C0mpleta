@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='img/icons8-favourite-website-48.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='contacto.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='confirmacion.css') }}">
+    <title>Descubre la Magia</title>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
+                <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                <li><a href="{{ url_for('carrito') }}">Carrito</a></li>
+            </ul>
+        </div>
+        <h1>Formulario de contacto</h1>
+    </header>
+
+    <main>
+        <section class="tabla-confirmacion">
+            <h2>Datos enviados:</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Mensaje</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- El contenido será generado dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+
+        <div class="cont">
+            <p>¡Gracias por contactarnos! Apreciamos tu consulta. Para brindarte una respuesta rápida, nuestro equipo se pondrá en contacto contigo en breve. ¡Esperamos poder ayudarte pronto!</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="redes-sociales">
+            <a href="https://www.facebook.com" target="_blank" class="icono-facebook">
+                <img src="{{ url_for('static', filename='img/facebook_4494479.png') }}" alt="Facebook">
+            </a>
+            <a href="https://www.twitter.com" target="_blank" class="icono-twitter">
+                <img src="{{ url_for('static', filename='img/twitter_2504839.png') }}" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com" target="_blank" class="icono-instagram">
+                <img src="{{ url_for('static', filename='img/instagram_4494488.png') }}" alt="Instagram">
+            </a>
+        </div>
+        <p>Derechos Reservados @2024</p>
+    </footer>
+
+    <script>
+        // Función para cargar los datos en la tabla desde la URL
+        function cargarDatos() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fname = urlParams.get('fname') || "N/A";
+            const lname = urlParams.get('lname') || "N/A";
+            const email = urlParams.get('email') || "N/A";
+            const message = urlParams.get('message') || "N/A";
+
+            // Creamos una fila dinámica
+            const tableBody = document.getElementById('table-body');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${fname}</td>
+                <td>${lname}</td>
+                <td>${email}</td>
+                <td>${message}</td>
+            `;
+            tableBody.appendChild(row);
+        }
+
+        // Llamamos a la función cuando la página carga
+        window.onload = cargarDatos;
+
+        // Redirección después de 20 segundos
+        setTimeout(() => {
+            window.location.href = "{{ url_for('index') }}";
+        }, 20000);
+    </script>
+</body>
+</html>

@@ -13,10 +13,10 @@
         <div class="navbar">
             <img class="logo" src="Imagenes/logo.png">
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="Contacto.html">Contacto</a></li>
-                <li><a href="app.html">Carrito</a></li>
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
+                <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+                <li><a href="{{ url_for('carrito') }}">Carrito</a></li>
             </ul>
         </div>
     </header>
