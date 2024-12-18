@@ -174,6 +174,8 @@ def confirmacion():
     message = request.args.get('message')
     return render_template('confirmacion.html', fname=fname, lname=lname, email=email, message=message)
 
+
+
 @app.route('/debug')
 def debug():
     users = User.query.all()
@@ -195,10 +197,12 @@ def save_config(data):
         json.dump(data, file, indent=4, ensure_ascii=False)
 
 # Ruta para mostrar el formulario
-@app.route('/editar')
+@app.route('/admin', methods=['GET'])
 def editar():
-    data = load_config()
-    return render_template('admin.html', **data)
+    # Cargar el archivo config.json
+    with open('config.json', 'r') as config_file:
+        config_data = json.load(config_file)
+    return render_template('admin.html', config=config_data)
 
 # Ruta para guardar los cambios
 @app.route('/guardar', methods=["POST"])
@@ -207,18 +211,20 @@ def guardar():
     data = {
         "banner_title": request.form['banner_title'],
         "package1_title": request.form['package1_title'],
-       
+        "package1_precio": request.form['package1_precio'],
         "package1_link": request.form['package1_link'],
+        "package1_msjb": request.form['package1_msjb'],
         "package2_title": request.form['package2_title'],
-        
+        "package2_precio": request.form['package2_precio'],
         "package2_link": request.form['package2_link'],
+        "package2_msjb": request.form['package2_msjb'],
         "facebook_link": request.form['facebook_link'],
         "twitter_link": request.form['twitter_link'],
         "instagram_link": request.form['instagram_link'],
         "footer_text": request.form['footer_text']
     }
     save_config(data)  # Guarda los datos en config.json
-    return redirect(url_for('admin'))  # Redirige al formulario de edición
+    return redirect(url_for('index'))  # Redirige al formulario de edición
 
 #................................................................
 # Configuración del servidor SMTP
@@ -237,8 +243,6 @@ def submit_reservation():
     name = request.form["name"]
     email = request.form["email"]
     phone = request.form["phone"]
-    date = request.form["date"]
-    time = request.form["time"]
     message = request.form["message"]
 
     # Crear el mensaje para ti (administrador)
@@ -247,21 +251,29 @@ def submit_reservation():
     Nombre: {name}
     Correo Electrónico: {email}
     Teléfono: {phone}
-    Fecha: {date}
-    Hora: {time}
     Mensaje/Detalles: {message}
     """
 
     # Crear el mensaje para el cliente
     client_message = f"""
-    Hola {name},
     
-    Gracias por realizar tu reserva. Aquí tienes los detalles:
-    Fecha: {date}
-    Hora: {time}
+    Estimado/a {name},
+
+    Agradecemos sinceramente que te hayas puesto en contacto con nosotros. Valoramos tu interés y nos aseguraremos de responder a tu consulta lo antes posible.
+
+    Si tienes alguna información adicional que desees compartir, no dudes en comunicarte con nosotros nuevamente. Estamos aquí para ayudarte.
+
+    Gracias por confiar en nosotros.
+
+    Atentamente,
+    [viajesDisney]
+    [https://wa.me/+5491159545781]
+
+
+
     Mensaje/Detalles: {message}
     
-    Nos pondremos en contacto contigo si necesitamos más información.
+    
     """
 
     # Enviar los correos
@@ -274,7 +286,7 @@ def submit_reservation():
             admin_email = MIMEMultipart()
             admin_email["From"] = SMTP_EMAIL
             admin_email["To"] = SMTP_EMAIL
-            admin_email["Subject"] = "Nueva Reserva Recibida"
+            admin_email["Subject"] = "Nueva Consulta Recibida"
             admin_email.attach(MIMEText(admin_message, "plain"))
             server.sendmail(SMTP_EMAIL, SMTP_EMAIL, admin_email.as_string())
 
@@ -282,7 +294,7 @@ def submit_reservation():
             client_email = MIMEMultipart()
             client_email["From"] = SMTP_EMAIL
             client_email["To"] = email
-            client_email["Subject"] = "Confirmación de Reserva"
+            client_email["Subject"] = "Confirmación de Consulta"
             client_email.attach(MIMEText(client_message, "plain"))
             server.sendmail(SMTP_EMAIL, email, client_email.as_string())
 
@@ -290,6 +302,39 @@ def submit_reservation():
     except Exception as e:
         print("Error al enviar el correo:", e)
         return "Hubo un error al enviar la reserva. Por favor, intenta de nuevo."
+#////////////////////////////////////////////////////////////////////////////////////////
+# Configuración de la carpeta para guardar imágenes
+UPLOAD_FOLDER = 'static/img'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Permitir solo ciertos tipos de archivo
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Ruta para renderizar el formulario de carga
+@app.route('/admin', methods=['GET', 'POST'])
+def upload_file():
+    message = None
+    message_type = None  # 'success' o 'error'
+
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            message = "No se seleccionó ningún archivo"
+            message_type = "error"
+        else:
+            file = request.files['file']
+            if file.filename == '':
+                message = "No se seleccionó ningún archivo"
+                message_type = "error"
+            elif file and allowed_file(file.filename):
+                filename = file.filename
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                message = f"Archivo subido con éxito: {filename}"
+                message_type = "success"
+
+    return render_template('admin.html', message=message, message_type=message_type)
 
 if __name__ == '__main__':
     with app.app_context():

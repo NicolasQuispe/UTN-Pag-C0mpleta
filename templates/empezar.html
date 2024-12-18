@@ -16,7 +16,6 @@
                 <li><a href="{{ url_for('index') }}">Inicio</a></li>
                 <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
                 <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
-                <li><a href="{{ url_for('carrito') }}">Carrito</a></li>
             </ul>
         </div>
     
@@ -29,16 +28,18 @@
                 <!-- Paquete 1 -->
                 <div class="places">
                     <h2>{{ package1_title }}</h2>
+                    <h3>Desde {{ package1_precio }} USD</h3>
                     <img class="foto" src="{{ url_for('static', filename='img/paris.jpg') }}" alt="{{ package1_title }}">
                     <br><br>
-                    <a class="res" href="{{ package1_link }}">Reserva ahora</a>
+                    <a class="res" href="{{ package1_link }}">{{ package1_msjb }}</a>
                 </div>
                 <!-- Paquete 2 -->
                 <div class="places">
                     <h2>{{ package2_title }}</h2>
+                    <h3>Desde {{ package2_precio }} USD</h3>
                     <img class="foto" src="{{ url_for('static', filename='img/orlando.jpg') }}" alt="{{ package2_title }}">
                     <br><br>
-                    <a class="res" href="{{ package2_link }}">Reserva ahora</a>
+                    <a class="res" href="{{ package2_link }}">{{ package2_msjb }}</a>
                 </div>
             </div>
         </div>

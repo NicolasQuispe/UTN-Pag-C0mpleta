@@ -1,11 +1,13 @@
 {
-    "banner_title": "!ELIGE TU PAQUETE!!!",
+    "banner_title": "!ELIGE TU PAQUETE!",
     "package1_title": "Disney Orlando Nuevo",
-    
+    "package1_precio": "8000",
     "package1_link": "/reserva1",
+    "package1_msjb": "Aprovecha Grandes Descuentos Reserva Ya!",
     "package2_title": "Disney Paris Nuevo",
-    
+    "package2_precio": "5000",
     "package2_link": "/reserva2",
+    "package2_msjb": "Aprovecha Grandes Descuentos Reserva Ya!",
     "facebook_link": "https://www.facebook.com",
     "twitter_link": "https://www.twitter.com",
     "instagram_link": "https://www.instagram.com",
