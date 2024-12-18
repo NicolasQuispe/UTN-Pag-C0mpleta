@@ -21,39 +21,45 @@
         </div>
     
         <div class="body">
+            <!-- Banner Principal -->
             <div class="heading">
-                <h1>ELIGE TU PAQUETE</h1>
+                <h1>{{ banner_title }}</h1>
             </div>
             <div class="tours">
+                <!-- Paquete 1 -->
                 <div class="places">
-                    <h2>Disney Orlando</h2>
-                    <img class="foto" src="{{ url_for('static', filename='img/orlando.jpg') }}">
+                    <h2>{{ package1_title }}</h2>
+                    <img class="foto" src="{{ url_for('static', filename='img/paris.jpg') }}" alt="{{ package1_title }}">
                     <br><br>
-                    <a class="res" href="{{ url_for('reserva1') }}">Reserva ahora</a>
+                    <a class="res" href="{{ package1_link }}">Reserva ahora</a>
                 </div>
+                <!-- Paquete 2 -->
                 <div class="places">
-                    <h2>Disney Paris</h2>
-                    <img class="foto" src="{{ url_for('static', filename='img/paris.jpg') }}">
+                    <h2>{{ package2_title }}</h2>
+                    <img class="foto" src="{{ url_for('static', filename='img/orlando.jpg') }}" alt="{{ package2_title }}">
                     <br><br>
-                    <a class="res" href="{{ url_for('reserva2') }}">Reserva ahora</a>
+                    <a class="res" href="{{ package2_link }}">Reserva ahora</a>
                 </div>
             </div>
         </div>
 
+        <!-- Footer -->
         <footer>
             <div class="redes-sociales">
-                <a href="https://www.facebook.com" target="_blank" class="icono-facebook">
+                <a href="{{ facebook_link }}" target="_blank" class="icono-facebook">
                     <img src="{{ url_for('static', filename='img/facebook_4494479.png') }}" alt="Facebook">
                 </a>
-                <a href="https://www.twitter.com" target="_blank" class="icono-twitter">
+                <a href="{{ twitter_link }}" target="_blank" class="icono-twitter">
                     <img src="{{ url_for('static', filename='img/twitter_2504839.png') }}" alt="Twitter">
                 </a>
-                <a href="https://www.instagram.com" target="_blank" class="icono-instagram">
+                <a href="{{ instagram_link }}" target="_blank" class="icono-instagram">
                     <img src="{{ url_for('static', filename='img/instagram_4494488.png') }}" alt="Instagram">
                 </a>
             </div>
-            <p>Derechos Reservados @2024</p>
+            <p>{{ footer_text }}</p>
         </footer>
     </div>
 </body>
 </html>
+
+
