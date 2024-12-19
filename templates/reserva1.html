@@ -91,18 +91,45 @@
             </div>
         </section>
         <aside class="reserva">
-            <form>
-                <h2>Reserva tu viaje</h2>
-                <label for="nombre">Nombre:</label><br>
-                <input type="text" id="nombre" name="nombre"><br>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email"><br>
-                <label for="fecha">Fecha de viaje:</label><br>
-                <input type="date" id="fecha" name="fecha"><br>
-                <label for="personas">Número de personas:</label><br>
-                <input type="number" id="personas" name="personas" min="1"><br>
-                <input type="submit" value="Reservar">
-            </form>
+            
+            <form id="reservation-form" action="/submit-reservation1" method="POST">
+                <h1>Formulario de Reserva</h1>
+            
+                <!-- Fechas de Viaje -->
+                <label for="travel-date">Fecha de Salida:</label>
+                <input type="date" id="travel-date" name="travel_date" required>
+            
+                <label for="return-date">Fecha de Regreso:</label>
+                <input type="date" id="return-date" name="return_date" required>
+            
+                <!-- Contenedor para Pasajeros -->
+                <div id="passengers-container">
+                  <div class="passenger">
+                    <h3>Pasajero 1</h3>
+                    <label for="name">Nombre:</label>
+                    <input type="text" name="name" placeholder="Nombre" required>
+            
+                    <label for="surname">Apellido:</label>
+                    <input type="text" name="surname" placeholder="Apellido" required>
+            
+                    <label for="birthdate">Fecha de Nacimiento:</label>
+                    <input type="date" name="birth_date" required>
+                  </div>
+                </div>
+            
+                <!-- Botón para agregar más pasajeros -->
+                <button type="button" id="add-passenger">Agregar Pasajero</button>
+            
+                <!-- Teléfono y Correo -->
+                <label for="phone">Teléfono de Contacto:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Ej: +54 9 11 1234-5678" pattern="^\+?[0-9\s-]{10,15}$" required>
+            
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" placeholder="Ej: correo@dominio.com" required>
+            
+                <!-- Botón de Envío -->
+                <button type="submit">Enviar Reserva</button>
+              </form>
             <div id="boleto"></div>
         </aside>
     </main>
@@ -115,21 +142,38 @@
         <p>Derechos Reservados @2024</p>
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.querySelector('form');
+        const passengersContainer = document.getElementById("passengers-container");
+    const addPassengerButton = document.getElementById("add-passenger");
+    let passengerCount = 1;
 
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
+    // Agregar un nuevo pasajero
+    addPassengerButton.addEventListener("click", () => {
+      passengerCount++;
 
-                const nombre = document.getElementById('nombre').value;
-                const email = document.getElementById('email').value;
-                const fecha = document.getElementById('fecha').value;
-                const personas = document.getElementById('personas').value;
+      const passengerDiv = document.createElement("div");
+      passengerDiv.classList.add("passenger");
+      passengerDiv.innerHTML = `
+        <h3>Pasajero ${passengerCount}</h3>
+        <label for="name">Nombre:</label>
+        <input type="text" name="passenger_name[]" placeholder="Nombre" required>
 
-                const queryParams = `?nombre=${nombre}&email=${email}&fecha=${fecha}&personas=${personas}`;
-                window.location.href = `boleto.html${queryParams}`;
-            });
-        });
+        <label for="surname">Apellido:</label>
+        <input type="text" name="passenger_surname[]" placeholder="Apellido" required>
+
+        <label for="birthdate">Fecha de Nacimiento:</label>
+        <input type="date" name="passenger_birthdate[]" required>
+
+        <button type="button" class="remove-passenger">Eliminar Pasajero</button>
+      `;
+
+      // Agregar funcionalidad para eliminar pasajeros
+      passengerDiv.querySelector(".remove-passenger").addEventListener("click", () => {
+        passengerDiv.remove();
+        passengerCount--;
+      });
+
+      passengersContainer.appendChild(passengerDiv);
+    });
     </script>
 </body>
 </html>

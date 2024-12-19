@@ -22,18 +22,28 @@
     </header>
     
     <main>
-        <h2>Formulario de Contacto</h2>
-        <form onsubmit="return submitForm();">
-            <label for="fname">Nombre:</label><br>
-            <input type="text" id="fname" name="fname" required><br>
-            <label for="lname">Apellido:</label><br>
-            <input type="text" id="lname" name="lname" required><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br>
-            <label for="message">Mensaje:</label><br>
-            <textarea id="message" name="message" required></textarea><br>
-            <input type="submit" value="Enviar">
-        </form>
+        <h1>Formulario de Reserva</h1>
+  <form action="/submit-contacto" method="POST">
+    <label for="name">Nombre:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Correo Electrónico:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Teléfono:</label><br>
+    <input type="tel" id="phone" name="phone" required><br><br>
+
+    <label for="date">Fecha de la Reserva:</label><br>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="time">Hora de la Reserva:</label><br>
+    <input type="time" id="time" name="time" required><br><br>
+
+    <label for="message">Mensaje o Detalles:</label><br>
+    <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+    <button type="submit">Enviar Reserva</button>
+  </form>
         <script>
             function submitForm() {
                 const fname = document.getElementById("fname").value;

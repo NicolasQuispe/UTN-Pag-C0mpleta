@@ -83,12 +83,16 @@ li a:hover{
 }
 
 /* Estilos para la sección de reserva */
+
+
 .reserva {
     
-    width: 30%;
-    padding: 20px 0;
-    margin-right: 5px;
+    padding: 20px;
+    margin-right: auto; /* Añade margen automático para centrar o desplazar hacia la izquierda */
+    margin-left: 10px; /* Ajusta para alejarlo del margen izquierdo */
     
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: Añade una sombra para destacar */
+    border-radius: 8px; /* Opcional: Bordes redondeados */
 }
 
 .reserva form {
@@ -103,7 +107,7 @@ li a:hover{
 .reserva form input[type="email"],
 .reserva form input[type="date"],
 .reserva form input[type="number"] {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 10px;
 }
@@ -116,6 +120,68 @@ li a:hover{
     color: #ffffff;
     border: none;
 }
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+    color: #1d3557;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+
+  input, button, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #1d3557;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background-color: #457b9d;
+  }
+
+  .passenger {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+
+  .remove-passenger {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .remove-passenger:hover {
+    background-color: #b71c1c;
+  }
 ::-webkit-scrollbar {
     display: none;
 }
