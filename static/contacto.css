@@ -74,6 +74,7 @@ li a:hover {
 
 h1 {
     color: white;
+    margin-bottom: 20px;
 }
 
 h3 {
@@ -112,16 +113,38 @@ form input, form textarea {
     border-radius: 4px;
 }
 
-form input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-form input[type="submit"]:hover {
-    background-color: #45a049;
+ form button[type="submit"] {  
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);  
+    color: white;  
+    padding: 12px 20px;  
+    border: none;  
+    border-radius: 30px;  
+    cursor: pointer;  
+    font-size: 16px;  
+    transition: all 0.3s ease;  
+}  
+
+form button[type="submit"]:hover {  
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);  
+    transform: scale(1.05);  
+} 
+a:hover {  
+    transform: scale(1.05);  
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);  
+}  
+div[name="w"] a {
+    background: linear-gradient(90deg, #25D366, #128C7E);  
+           color: white;  
+           padding: 12px 25px;  
+           text-decoration: none;  
+           display: inline-block;  
+           font-size: 18px;  
+           margin: 5px 3px;  
+           cursor: pointer;  
+           border-radius: 50px;  
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+           transition: all 0.3s ease-in-out;
 }
 
 /* Footer */

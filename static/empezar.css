@@ -172,12 +172,20 @@ img:hover {
     border-radius: 12px;
 }
 
+h3{
+    color: #fff; /* Esto hará que el texto del encabezado sea blanco */
+    font-size: 25px;
+    letter-spacing: 3px;
+    border-radius: 1px;
+    padding: 30px 30px;
+    background-color: #000; /* Esto hará que el fondo del encabezado sea negro */  
+}
 .places h2 {
     color: #fff; /* Esto hará que el texto del encabezado sea blanco */
     font-size: 35px;
     letter-spacing: 3px;
     border-radius: 1px;
-    padding: 30px 30px;
+    padding: 10px 10px;
     background-color: #000; /* Esto hará que el fondo del encabezado sea negro */
 }
 

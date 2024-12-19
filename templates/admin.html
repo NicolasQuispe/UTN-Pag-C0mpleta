@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 811a4070b75486eee1517d41fa79b2ddf54cae63
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Configuración</title>
     <style>
+<<<<<<< HEAD
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -69,3 +74,202 @@
     </form>
 </body>
 </html>
+=======
+        /* Fondo general */
+        body {
+            background-color: #000;
+            /* Negro */
+            color: #f0f0f0;
+            /* Texto claro */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Encabezados */
+        h1,
+        h2 {
+            color: #00d4ff;
+            /* Azul claro */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Formularios */
+        form {
+            background-color: #1a1a1a;
+            /* Gris oscuro */
+            border: 1px solid #333;
+            /* Borde gris más oscuro */
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            /* Centrado */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            /* Sombra */
+        }
+
+        /* Etiquetas */
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #f0f0f0;
+            /* Texto claro */
+            font-weight: bold;
+        }
+
+        /* Campos de entrada */
+        form input[type="text"],
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #444;
+            /* Borde gris */
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            /* Gris más claro */
+            color: #f0f0f0;
+            /* Texto claro */
+            font-size: 16px;
+        }
+
+        /* Botones */
+        form button {
+            background-color: #00d4ff;
+            /* Azul claro */
+            color: #000;
+            /* Texto oscuro */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        form button:hover {
+            background-color: #00a3cc;
+            /* Azul más oscuro */
+        }
+
+        /* Centrado del formulario */
+        form {
+            text-align: left;
+        }
+
+        /* Ajustes adicionales */
+        input[type="file"] {
+            padding: 5px;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+       /* Estilos del cuadro de mensajes */
+       .message-box {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 300px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none; /* Oculto por defecto */
+        }
+        .message-box.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block; /* Mostrar si es éxito */
+        }
+        .message-box.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block; /* Mostrar si es error */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Editar Vista y Contenido de la Vista de Paquetes Configuración</h1>
+    <form method="POST" action="/guardar">
+        <label for="banner_title">Título del Banner:</label>
+        <input type="text" name="banner_title" value="{{ config['banner_title'] }}" required
+            placeholder="Ejemplo: ¡Bienvenidos a nuestro sitio!">
+
+        <label for="package1_title">Título Paquete 1:</label>
+        <input type="text" name="package1_title" value="{{ config['package1_title'] }}" required
+            placeholder="Ejemplo: Paquete Básico">
+
+        <label for="package1_precio">Precio del Paquete 1:</label>
+        <input type="text" name="package1_precio" value="{{ config['package1_precio'] }}" required
+            placeholder="Ejemplo: Precio Del Paquete Básico 1 3000">
+
+        <label for="package1_link">Enlace Paquete 1:</label>
+        <input type="text" name="package1_link" value="{{ config['package1_link'] }}" required
+            placeholder="Ejemplo: /paquete1">
+
+        <label for="package1_msjb">Mensaje del botón reserva 1:</label>
+        <input type="text" name="package1_msjb" value="{{ config['package1_msjb'] }}" required
+            placeholder="Ejemplo: Reserva Ahora">
+
+        <label for="package2_title">Título Paquete 2:</label>
+        <input type="text" name="package2_title" value="{{ config['package2_title'] }}" required
+            placeholder="Ejemplo: Paquete Premium">
+
+        <label for="package2_precio">Precio del Paquete 2:</label>
+        <input type="text" name="package2_precio" value="{{ config['package2_precio'] }}" required
+            placeholder="Ejemplo: Precio Del Paquete Basico 2 4000">
+
+        <label for="package2_link">Enlace Paquete 2:</label>
+        <input type="text" name="package2_link" value="{{ config['package2_link'] }}" required
+            placeholder="Ejemplo: /paquete2">
+
+        <label for="package2_msjb">Mensaje del botón reserva 2:</label>
+        <input type="text" name="package2_msjb" value="{{ config['package2_msjb'] }}" required
+            placeholder="Ejemplo: ¡Aprovecha la oferta!">
+
+        <label for="facebook_link">Enlace Facebook:</label>
+        <input type="text" name="facebook_link" value="{{ config['facebook_link'] }}" required
+            placeholder="Ejemplo: https://facebook.com/tuempresa">
+
+        <label for="twitter_link">Enlace Twitter:</label>
+        <input type="text" name="twitter_link" value="{{ config['twitter_link'] }}" required
+            placeholder="Ejemplo: https://twitter.com/tuempresa">
+
+        <label for="instagram_link">Enlace Instagram:</label>
+        <input type="text" name="instagram_link" value="{{ config['instagram_link'] }}" required
+            placeholder="Ejemplo: https://instagram.com/tuempresa">
+
+        <label for="footer_text">Texto del Footer:</label>
+        <input type="text" name="footer_text" value="{{ config['footer_text'] }}" required
+            placeholder="Ejemplo: Todos los derechos reservados.">
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+
+    <h1>Cargar Imagen</h1>
+    <!-- Cuadro de mensajes -->
+    {% if message %}
+    <div id="messageBox" class="message-box {{ message_type }}">
+        {{ message }}
+    </div>
+    {% endif %}
+    <h2>Ingresa Imagenes Para Personalizar Tus Paquetes</h2>
+    <form action="/admin" method="POST" enctype="multipart/form-data">
+        <label for="file">Seleccionar imagen:</label>
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Subir</button>
+    </form>
+
+
+</body>
+
+</html>
+>>>>>>> 811a4070b75486eee1517d41fa79b2ddf54cae63
